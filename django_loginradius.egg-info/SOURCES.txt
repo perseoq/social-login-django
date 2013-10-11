@@ -1,0 +1,14 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.py
+django_loginradius/LoginRadiusSDK.py
+django_loginradius/__init__.py
+django_loginradius/loginradius_auth.py
+django_loginradius/models.py
+django_loginradius/urls.py
+django_loginradius/views.py
+django_loginradius.egg-info/PKG-INFO
+django_loginradius.egg-info/SOURCES.txt
+django_loginradius.egg-info/dependency_links.txt
+django_loginradius.egg-info/top_level.txt

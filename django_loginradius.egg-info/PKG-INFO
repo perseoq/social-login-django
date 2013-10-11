@@ -1,0 +1,97 @@
+Metadata-Version: 1.1
+Name: django-loginradius
+Version: 0.1
+Summary: Django Authentication support for LoginRadius. Provides social authentication for 25+ social providers
+Home-page: https://www.loginradius.com/
+Author: LoginRadius Team
+Author-email: deepak@loginradius.com
+License: The MIT License file
+Description: Django Authentication support document for LoginRadius
+        --------------------------------------------------------
+        --------------------------------------------------------
+        django_loginradius app eliminate traditional registration form and let your users sign-up in few seconds with their existing IDs such as Facebook, Twitter, Google, Amazon, Yahoo, Vkontakte and over 25 more. However, you can keep both traditional login system as well as social login. Integrating social login increases your sign-up rate up to 150% and you can quickly build a loyal customer base!
+        
+        Requirement:
+        ------------------------------------------
+        
+        Django >=1.4 
+        
+        Installation Setup
+        ------------------------------------------
+        
+        Add this app (django_loginradius)  to your project directory.
+        
+        Configuration
+        ------------------------------------------
+        
+        settings.py
+        __________________________________________
+        Add django_loginradius to INSTALLED_APPS, make sure you have django.contrib.auth enabled:
+        
+        INSTALLED_APPS = (
+                'django.contrib.auth',
+                # . . .
+                'django_loginradius',
+            )
+        	
+        Add the authentication backend:
+        
+        AUTHENTICATION_BACKENDS = ('django_loginradius.loginradius_auth.LoginRadiusAuthBackend',)
+        
+        Configure LoginRadius:
+        
+        **YOUR-LOGINRADIUS-SECRET-KEY** that  you get from LoginRadius account.
+        
+        LOGINRADIUS_API_SECRET = 'YOUR-LOGINRADIUS-SECRET-KEY'
+        
+        urls.py
+        _________________________________________
+        
+        Add the following URL pattern to your **urlpatterns** tuple:
+        
+        url(r'^loginradius/', include('django_loginradius.urls'))
+        
+        This should enable you to use the callback view at **/loginradius/connect/**
+        
+        Template
+        _________________________________________
+        
+        Add Social Login Interface inside yor login template
+        
+        Follow the steps mentioned below:
+        
+        Add the following code to <head> tag:
+        
+        Add the **loginradius-api-key** that you get from your LoginRadius account.
+        
+        Django <1.5
+        ------------------------------
+        
+        Set  **$ui.callback** attribute of the LoginRadius callback view. Example **"http://example.com{% url  lr_connect %}"**
+        
+        Django >= 1.5 
+        ------------------------------
+        
+        Set  **$ui.callback** attribute of the LoginRadius callback view. Example **"http://example.com{% url  'lr_connect' %}"**
+        
+        Note: Be sure **$ui.callback** attribute in following code is according to the django version.
+        
+        <script src="http://hub.loginradius.com/include/js/LoginRadius.js" ></script>
+        <script type="text/javascript">      var options={};      options.login=true;       
+        LoginRadius_SocialLogin.util.ready(function () { $ui = LoginRadius_SocialLogin.lr_login_settings;$ui.interfacesize = "";$ui.apikey = "your-loginradius-api-key";$ui.callback="http://example.com{% url  lr_connect  %}"; $ui.lrinterfacecontainer ="interfacecontainerdiv"; LoginRadius_SocialLogin.init(options);  }); </script>
+        
+        Add the following code to <body> tag:
+        
+        <div id="interfacecontainerdiv" class="interfacecontainerdiv"></div>
+        
+        The template might look like:
+        
+        <script src="http://hub.loginradius.com/include/js/LoginRadius.js" ></script>
+        <script type="text/javascript">      var options={};      options.login=true;       
+        LoginRadius_SocialLogin.util.ready(function () { $ui = LoginRadius_SocialLogin.lr_login_settings;$ui.interfacesize = "";$ui.apikey = "your-loginradius-api-key";$ui.callback="http://example.com{% url  lr_ connect  %}"; $ui.lrinterfacecontainer ="interfacecontainerdiv"; LoginRadius_SocialLogin.init(options);  }); </script>
+        <div id="interfacecontainerdiv" class="interfacecontainerdiv"></div>
+        
+        
+        
+Platform: UNKNOWN
+Requires: Django (>=1.4)
