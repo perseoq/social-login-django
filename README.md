@@ -12,7 +12,7 @@ Installation Setup
 
 Add this app (django_loginradius) to your project directory.
 
-Configuration:
+**Configuration:**
 
 1. settings.py
   
